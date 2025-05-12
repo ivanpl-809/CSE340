@@ -10,11 +10,11 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 
-app.set("view engine", "ejs"); // Enable EJS templates
-app.set("views", "./views");   // Specify views directory
+app.set("view engine", "ejs");
+app.set("views", "./views");  
 
 
-app.use(express.static("public")); // Serve files from 'public' folder
+app.use(express.static("public"));
 
 /* ***********************
  * Routes
