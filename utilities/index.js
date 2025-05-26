@@ -22,7 +22,7 @@ Util.getNav = async function (req, res, next) {
   })
   list += "</ul>"
   return list
-}
+};
 
 
 /* **************************************
@@ -56,7 +56,7 @@ Util.buildClassificationGrid = async function(data){
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
-}
+};
 
 /* **************************************
 * Build the vehicle detail HTML
@@ -78,7 +78,7 @@ Util.buildVehicleDetailHTML = function (vehicle) {
   detailHTML += '</div>'
 
   return detailHTML
-}
+};
 
 
 module.exports = Util
