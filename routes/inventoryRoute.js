@@ -1,6 +1,6 @@
 const express = require("express")
 const router = new express.Router() 
-const invController = require("../controllers/inventoryController")
+const inventoryController = require("../controllers/inventoryController")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", inventoryController.buildByClassificationId);
