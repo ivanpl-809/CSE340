@@ -6,6 +6,14 @@ require("dotenv").config()
  * But will cause problems in production environment
  * If - else will make determination which to use
  * *************** */
+
+const isProduction = process.env.NODE_ENV === "production";
+
+const prod_pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
+});
+
 let pool
 if (process.env.NODE_ENV == "development") {
   pool = new Pool({
