@@ -24,7 +24,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-module.exports = Util
 
 /* **************************************
 * Build the classification view HTML
@@ -80,3 +79,6 @@ Util.buildVehicleDetailHTML = function (vehicle) {
 
   return detailHTML
 }
+
+
+module.exports = Util
