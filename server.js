@@ -8,7 +8,6 @@
 const express = require("express")
 const env = require("dotenv").config()
 const path = require('path');
-const exphbs = require('express-handlebars');
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute.js")
@@ -18,8 +17,15 @@ const baseController = require("./controllers/baseController")
 app.set("view engine", "ejs");
 app.set("views", "./views");  
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+const { engine } = require('express-handlebars');
+
+app.engine('handlebars', engine({
+  defaultLayout: 'main',
+  extname: '.handlebars'
+}));
 app.set('view engine', 'handlebars');
+app.set('views', './views');
+
 
 app.use(express.static("public"));
 
