@@ -18,10 +18,7 @@ const baseController = require("./controllers/baseController")
 app.set("view engine", "ejs");
 app.set("views", "./views");  
 
-const { engine } = require('express-handlebars');
-
-app.engine('handlebars', engine({ defaultLayout: 'main' }));
-
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static("public"));
