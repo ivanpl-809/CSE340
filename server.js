@@ -42,3 +42,12 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}, // hide stack in production
+  });
+});
