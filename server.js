@@ -53,3 +53,6 @@ app.use((err, req, res, next) => {
     error: {}, // hide stack in production
   });
 });
+
+const errorTestRoute = require("./routes/errorTestRoute")
+app.use("/error", errorTestRoute)
