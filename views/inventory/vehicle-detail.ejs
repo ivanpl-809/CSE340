@@ -1,10 +1,7 @@
-{{!-- views/inventory/vehicle-detail.handlebars --}}
-{{!-- This file receives `vehicleHTML`, `title`, and `nav` --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{{title}}</title>
+  <title><%= title %></title>
   <style>
     .vehicle-detail-container {
       display: flex;
@@ -36,10 +33,10 @@
 </head>
 <body>
   <header>
-    {{{nav}}}
+    <%- nav %>
   </header>
   <main>
-    {{{vehicleHTML}}}
+    <%- vehicleHTML %>
   </main>
 </body>
 </html>
