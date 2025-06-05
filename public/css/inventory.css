@@ -1,0 +1,68 @@
+/* public/css/vehicle-detail.css */
+
+.vehicle-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 30px auto;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.vehicle-detail-img {
+  flex: 1 1 400px;
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+.vehicle-info {
+  flex: 1 1 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.vehicle-info h2 {
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #004080;
+  font-size: 2rem;
+  border-bottom: 2px solid #004080;
+  padding-bottom: 10px;
+}
+
+.vehicle-info p {
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.vehicle-info p strong {
+  color: #0066cc;
+}
+
+@media (max-width: 768px) {
+  .vehicle-detail {
+    flex-direction: column;
+    padding: 15px;
+    margin: 20px;
+  }
+  
+  .vehicle-detail-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .vehicle-info {
+    flex: 1 1 auto;
+  }
+}
