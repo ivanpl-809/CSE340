@@ -9,11 +9,12 @@
 </head>
 
 <body>
-  <header>
-    <%- nav %>
-  </header>
-  <main>
+  <%- include("../partials/header") %>
+
+  <main class="vehicle-detail-page">
     <%- vehicleHTML %>
   </main>
+
+  <%- include("../partials/footer") %>
 </body>
 </html>
