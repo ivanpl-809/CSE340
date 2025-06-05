@@ -20,14 +20,12 @@ h1 {
   color: #333;
 }
 
-/* Vehicle Grid */
 .vehicle-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
-/* Individual Vehicle Card */
 .vehicle-card {
   background-color: #fff;
   border-radius: 10px;
