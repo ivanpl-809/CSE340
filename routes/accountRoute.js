@@ -6,6 +6,8 @@ const accountController = require("../controllers/accountController")
 // Route for delivering login view
 router.get("/login", accountController.buildLogin)
 router.get("/register", accountController.buildRegister)
+router.post('/register', accountController.registerAccount)
+
 
 
 module.exports = router
