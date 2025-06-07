@@ -12,14 +12,39 @@ const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute.js")
 const baseController = require("./controllers/baseController")
+const session = require("express-session")
+const pool = require('./database/')
+const accountRoute = require("./routes/accountRoute")
+
 
 
 app.set("view engine", "ejs");
-app.set("views", "./views");  
+app.set('views', path.join(__dirname, 'views'));
 
 
 
 app.use(express.static(path.join(__dirname, 'public')))
+
+/* ***********************
+ * Middleware
+ * ************************/
+ app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 /* ***********************
  * Routes
@@ -27,6 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(static)
 
 app.get("/", baseController.buildHome);
+app.use("/account", accountRoute)
+
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
@@ -45,12 +72,16 @@ app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
 
+app.get('/errorTest', (req, res, next) => {
+  const error = new Error('This is a simulated 500 error as per the errorTestController');
+  error.status = 500;
+  next(error);
+});
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}, // hide stack in production
+  res.status(err.status || 500).render('errors/500', {
+    message: err.message || 'Internal Server Error'
   });
 });
 
