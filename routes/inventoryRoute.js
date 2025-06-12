@@ -5,7 +5,7 @@ const inventoryController = require("../controllers/inventoryController")
 // Route to build inventory by classification view
 router.get("/type/:classificationId", inventoryController.buildByClassificationId);
 router.get('/detail/:inv_id', inventoryController.buildVehicleDetail);
-router.get("/inv", inventoryController.buildManagementView)
+router.get("/", inventoryController.buildManagementView)
 router.get("/add-classification", inventoryController.buildAddClassification)
 router.post("/add-classification", inventoryController.addClassification)
 router.get("/add-inventory", inventoryController.buildAddInventory)

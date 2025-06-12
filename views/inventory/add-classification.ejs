@@ -10,11 +10,23 @@
   </div>
 <% } %>
 
-<form action="/inv/add-classification" method="post">
-  <label for="classification_name">Classification Name</label>
-  <input type="text" name="classification_name" id="classification_name" pattern="^[A-Za-z0-9]+$" required>
-  <p>No spaces or special characters allowed.</p>
-  <button type="submit">Add Classification</button>
+<form action="/inv/add-classification" method="post" class="form">
+  <div class="form-group">
+    <label for="classification_name">Classification Name</label>
+    <input
+      type="text"
+      name="classification_name"
+      id="classification_name"
+      pattern="^[A-Za-z0-9]+$"
+      placeholder="e.g. SUV"
+      required
+    >
+    <small class="form-note">No spaces or special characters allowed.</small>
+  </div>
+
+  <div class="form-group">
+    <button type="submit">Add Classification</button>
+  </div>
 </form>
 
 <%- include('../partials/footer') %>

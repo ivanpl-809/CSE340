@@ -63,7 +63,7 @@ async function addClassification(classification_name) {
 /* ***************************
  *  Add a new inventory item to the database
  * ************************** */
-async function addInventory(
+async function addInventoryItem(
   inv_make,
   inv_model,
   inv_year,
@@ -107,5 +107,5 @@ module.exports = {
   getInventoryByClassificationId,
   getVehicleById,
   addClassification,
-  addInventory
+  addInventoryItem
 }

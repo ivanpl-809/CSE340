@@ -115,6 +115,16 @@ invCont.buildAddInventory = async function (req, res) {
     classificationList,
     messages: req.flash("notice"),
     ...req.body, // Sticky fields
+    inv_make: "",
+    inv_model: "",
+    inv_year: "",
+    inv_description: "",
+    inv_image: "",
+    inv_thumbnail: "",
+    inv_price: "",
+    inv_miles: "",
+    inv_color: "",
+    classification_id: ""
   })
 }
 
@@ -142,11 +152,18 @@ invCont.addInventory = async function (req, res) {
     })
   }
 
-  const result = await invModel.addInventoryItem({
-    classification_id, inv_make, inv_model, inv_year,
-    inv_description, inv_image, inv_thumbnail,
-    inv_price, inv_miles, inv_color
-  })
+  const result = await invModel.addInventoryItem(
+  inv_make,
+  inv_model,
+  inv_year,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_miles,
+  inv_color,
+  classification_id
+)
 
   if (result) {
     req.flash("notice", "Inventory item added.")

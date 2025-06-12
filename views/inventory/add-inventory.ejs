@@ -10,38 +10,63 @@
   </div>
 <% } %>
 
-<form action="/inv/add-inventory" method="post">
-  <label for="classificationList">Classification</label>
-  <%= classificationList %>
+<form action="/inv/add-inventory" method="post" class="form">
 
-  <label for="inv_make">Make</label>
-  <input type="text" name="inv_make" id="inv_make" value="<%= inv_make %>" required>
+  <div class="form-group">
+    <label for="classificationList">Classification</label>
+    <select name="classification_id" id="classificationList" required>
+      <%- classificationList %>
+    </select>
+  </div>
 
-  <label for="inv_model">Model</label>
-  <input type="text" name="inv_model" id="inv_model" value="<%= inv_model %>" required>
+  <div class="form-group">
+    <label for="inv_make">Make</label>
+    <input type="text" name="inv_make" id="inv_make" value="<%= inv_make || '' %>" required>
+  </div>
 
-  <label for="inv_year">Year</label>
-  <input type="number" name="inv_year" id="inv_year" value="<%= inv_year %>" required>
+  <div class="form-group">
+    <label for="inv_model">Model</label>
+    <input type="text" name="inv_model" id="inv_model" value="<%= inv_model || '' %>" required>
+  </div>
 
-  <label for="inv_description">Description</label>
-  <textarea name="inv_description" id="inv_description" required><%= inv_description %></textarea>
+  <div class="form-group">
+    <label for="inv_year">Year</label>
+    <input type="number" name="inv_year" id="inv_year" value="<%= inv_year || '' %>" required>
+  </div>
 
-  <label for="inv_image">Image Path</label>
-  <input type="text" name="inv_image" id="inv_image" value="<%= inv_image %>" required>
+  <div class="form-group">
+    <label for="inv_description">Description</label>
+    <textarea name="inv_description" id="inv_description" required><%= inv_description || '' %></textarea>
+  </div>
 
-  <label for="inv_thumbnail">Thumbnail Path</label>
-  <input type="text" name="inv_thumbnail" id="inv_thumbnail" value="<%= inv_thumbnail %>" required>
+  <div class="form-group">
+    <label for="inv_image">Image Path</label>
+    <input type="text" name="inv_image" id="inv_image" value="<%= inv_image || '/images/vehicles/no-image.png' %>" required>
+  </div>
 
-  <label for="inv_price">Price</label>
-  <input type="number" name="inv_price" id="inv_price" value="<%= inv_price %>" step="0.01" required>
+  <div class="form-group">
+    <label for="inv_thumbnail">Thumbnail Path</label>
+    <input type="text" name="inv_thumbnail" id="inv_thumbnail" value="<%= inv_thumbnail || '/images/vehicles/no-image-tn.png' %>" required>
+  </div>
 
-  <label for="inv_miles">Miles</label>
-  <input type="number" name="inv_miles" id="inv_miles" value="<%= inv_miles %>" required>
+  <div class="form-group">
+    <label for="inv_price">Price</label>
+    <input type="number" name="inv_price" id="inv_price" value="<%= inv_price || '' %>" step="0.01" required>
+  </div>
 
-  <label for="inv_color">Color</label>
-  <input type="text" name="inv_color" id="inv_color" value="<%= inv_color %>" required>
+  <div class="form-group">
+    <label for="inv_miles">Miles</label>
+    <input type="number" name="inv_miles" id="inv_miles" value="<%= inv_miles || '' %>" required>
+  </div>
 
-  <button type="submit">Add Vehicle</button>
+  <div class="form-group">
+    <label for="inv_color">Color</label>
+    <input type="text" name="inv_color" id="inv_color" value="<%= inv_color || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <button type="submit">Add Vehicle</button>
+  </div>
 </form>
 
 <%- include('../partials/footer') %>
