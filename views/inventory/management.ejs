@@ -1,10 +1,19 @@
 <%- include('../partials/header') %>
 <main>
 <h1>Inventory Management</h1>
+<p>Select a classification to see the vehicles in inventory.</p>
+
+<%- classificationList %>
+
+<table id="inventoryDisplay"></table>
 
 <ul>
   <li><a href="/inv/add-classification">Add New Classification</a></li>
   <li><a href="/inv/add-inventory">Add New Inventory</a></li>
 </ul>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
 </main>
+<script src="../../js/inventory.js"></script>
 <%- include('../partials/footer') %>

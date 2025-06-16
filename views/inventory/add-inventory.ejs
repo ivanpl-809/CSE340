@@ -67,6 +67,11 @@
   <div class="form-group">
     <button type="submit">Add Vehicle</button>
   </div>
+
+  <input type="hidden" name="inv_id"
+<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+<% } %>>
+
 </form>
 
 <%- include('../partials/footer') %>
