@@ -106,23 +106,47 @@ Util.buildClassificationList = async function (classification_id = null) {
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
- if (req.cookies.jwt) {
-  jwt.verify(
-   req.cookies.jwt,
-   process.env.ACCESS_TOKEN_SECRET,
-   function (err, accountData) {
+  const token = req.cookies.jwt
+
+  if (!token) {
+    res.locals.loggedin = false
+    res.locals.accountData = null
+    return next()
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
     if (err) {
-     req.flash("Please log in")
-     res.clearCookie("jwt")
-     return res.redirect("/account/login")
+      req.flash("notice", "Please log in.")
+      res.clearCookie("jwt")
+      res.locals.loggedin = false
+      res.locals.accountData = null
+      return res.redirect("/account/login")
     }
+
+    res.locals.loggedin = true
     res.locals.accountData = accountData
-    res.locals.loggedin = 1
     next()
-   })
- } else {
+  })
+}
+
+/* ****************************************
+* Middleware to restrict access to certain account types
+**************************************** */
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData
+
+  if (!accountData) {
+    req.flash("notice", "You must be logged in to access this page.")
+    return res.redirect("/account/login")
+  }
+
+  const allowedTypes = ["Admin", "Employee"]
+  if (!allowedTypes.includes(accountData.account_type)) {
+    req.flash("notice", "You do not have permission to access this page.")
+    return res.redirect("/account/login")
+  }
+
   next()
- }
 }
 
 /* ****************************************

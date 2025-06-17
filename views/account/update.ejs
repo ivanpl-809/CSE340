@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include("../partials/header") %>
+
+  <main>
+    <% if (typeof errors !== 'undefined' && errors.array && errors.array().length > 0) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <% if (typeof message !== 'undefined' && message) { %>
+      <div class="notice"><%= message %></div>
+    <% } %>
+
+    <h1><%= title %></h1>
+
+    <section class="account-update-section">
+      <h2>Update Account Information</h2>
+      <form id="updateAccountForm" action="/account/update" method="post">
+        <label for="account_firstname">First Name</label>
+        <input 
+          type="text" 
+          id="account_firstname" 
+          name="account_firstname" 
+          required 
+          value="<%= typeof account_firstname !== 'undefined' ? account_firstname : accountData.account_firstname %>">
+
+        <label for="account_lastname">Last Name</label>
+        <input 
+          type="text" 
+          id="account_lastname" 
+          name="account_lastname" 
+          required 
+          value="<%= typeof account_lastname !== 'undefined' ? account_lastname : accountData.account_lastname %>">
+
+        <label for="account_email">Email</label>
+        <input 
+          type="email" 
+          id="account_email" 
+          name="account_email" 
+          required 
+          value="<%= typeof account_email !== 'undefined' ? account_email : accountData.account_email %>">
+
+        <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+        <input type="hidden" name="update_type" value="account">
+
+        <button type="submit">Update Account</button>
+      </form>
+    </section>
+
+    <hr>
+
+    <section class="password-update-section">
+      <h2>Change Password</h2>
+      <p>
+        Enter a new password to change your current one. 
+        <strong>Requirements:</strong> At least 12 characters, with an uppercase letter, a number, and a special character.
+      </p>
+
+      <form id="changePasswordForm" action="/account/update-password" method="post">
+        <label for="account_password">New Password</label>
+        <input 
+          type="password" 
+          id="account_password" 
+          name="account_password" 
+          required 
+        pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{12,}"
+          title="Password must be at least 12 characters long, and include uppercase, lowercase, number, and special character.">
+
+        <input type="checkbox" onclick="togglePassword()"> Show Password
+
+        <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+        <input type="hidden" name="update_type" value="password">
+
+        <button type="submit">Change Password</button>
+      </form>
+
+      <script>
+        function togglePassword() {
+          const input = document.getElementById("account_password")
+          input.type = input.type === "password" ? "text" : "password"
+        }
+      </script>
+    </section>
+  </main>
+
+  <%- include("../partials/footer") %>
+</body>
+</html>

@@ -3,7 +3,14 @@
 <header>
     <div class="logo">
       <h1>CSE Motors</h1>
-      <li><a href="/account/login" title="Click to login or manage your account">My Account</a></li>
+      <ul>
+  <% if (locals.loggedin) { %>
+    <li><a href="/inv">Welcome, <%= accountData.account_firstname %>!</a></li>
+    <li><a href="/account/logout">Logout</a></li>
+  <% } else { %>
+    <li><a href="/account/login">My Account</a></li>
+  <% } %>
+</ul>
     </div>
     <nav>
       <%- nav %>

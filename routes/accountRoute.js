@@ -19,7 +19,7 @@ router.get("/", utilities.checkLogin, async (req, res, next) => {
 // Process the registration data
 router.post(
   "/register",
-  regValidate.registationRules(),
+  regValidate.registrationRules(),
   regValidate.checkRegData,
   accountController.registerAccount
 );
@@ -31,5 +31,23 @@ router.post(
   accountController.accountLogin
 )
 
+router.get("/logout", accountController.logout)
+
+router.get("/update/:account_id", utilities.checkJWTToken, accountController.buildUpdateAccount)
+
+router.post(
+  "/update",
+  utilities.checkJWTToken,
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateAccountData,
+  accountController.updateAccount)
+
+  router.post(
+  "/update-password",
+  utilities.checkJWTToken,
+  regValidate.passwordRules(),
+  regValidate.checkPasswordData,
+  accountController.updatePassword
+)
 
 module.exports = router

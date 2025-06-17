@@ -39,7 +39,20 @@ async function getAccountByEmail (account_email) {
   }
 }
 
+async function updateAccountPassword(account_id, hashedPassword) {
+  const sql = `
+    UPDATE account
+    SET account_password = $1
+    WHERE account_id = $2
+    RETURNING account_id
+  `
+  const data = await pool.query(sql, [hashedPassword, account_id])
+  return data.rowCount > 0
+}
+
 module.exports = {
   registerAccount,
-  checkExistingEmail
+  checkExistingEmail,
+  getAccountByEmail,
+  updateAccountPassword
 }

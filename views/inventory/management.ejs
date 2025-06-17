@@ -1,19 +1,30 @@
 <%- include('../partials/header') %>
+
 <main>
-<h1>Inventory Management</h1>
-<p>Select a classification to see the vehicles in inventory.</p>
+  <h1>Inventory Management</h1>
+  <p>Select a classification to see the vehicles in inventory.</p>
 
-<%- classificationList %>
+  <!-- Dropdown list injected from server -->
+  <form>
+    <label for="classificationList">Classification:</label>
+    <select id="classificationList" name="classificationList">
+      <%- classificationList %>
+    </select>
+  </form>
 
-<table id="inventoryDisplay"></table>
+  <!-- Table where inventory will display -->
+  <table id="inventoryDisplay"></table>
 
-<ul>
-  <li><a href="/inv/add-classification">Add New Classification</a></li>
-  <li><a href="/inv/add-inventory">Add New Inventory</a></li>
-</ul>
+  <ul>
+    <li><a href="/inv/add-classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+  </ul>
 
-<noscript>JavaScript must be enabled to use this page.</noscript>
-
+  <noscript>
+    <p><strong>JavaScript must be enabled to use this page.</strong></p>
+  </noscript>
 </main>
-<script src="../../js/inventory.js"></script>
+
+<script src="/js/inventory.js"></script>
+
 <%- include('../partials/footer') %>
