@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<main>
+  <h1>Manage Appointments</h1>
+
+  <% if (messages && messages.length > 0) { %>
+  <div class="notice">
+    <% messages.forEach(function(message) { %>
+      <p><%= message %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+  <% if (appointments.length === 0) { %>
+    <p>No appointments found.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>Date</th>
+          <% if (appointments[0].account_firstname) { %>
+            <th>Client</th>
+          <% } %>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% appointments.forEach(app => { %>
+          <tr>
+            <td><%= app.inv_make %> <%= app.inv_model %> (<%= app.inv_year %>)</td>
+            <td><%= new Date(app.appointment_date).toLocaleString() %></td>
+            <% if (app.account_firstname) { %>
+              <td><%= app.account_firstname %> <%= app.account_lastname %></td>
+            <% } %>
+            <td><%= app.message || "-" %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</main>
+
+<%- include('../partials/footer') %>

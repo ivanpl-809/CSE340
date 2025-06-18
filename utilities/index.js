@@ -77,6 +77,11 @@ Util.buildVehicleDetailHTML = function (vehicle) {
   detailHTML += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>`
   detailHTML += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`
 
+   detailHTML += `
+    <div class="vehicle-actions">
+      <a href="/appointments/schedule/${vehicle.inv_id}" class="button">Schedule Test Drive</a>
+    </div>
+  `
   detailHTML += '</div>'
   detailHTML += '</div>'
 

@@ -37,14 +37,16 @@ invCont.buildVehicleDetail = async function (req, res, next) {
     if (!vehicleData) {
       return next()
     }
-
-    const vehicleHTML = utilities.buildVehicleDetailHTML(vehicleData)
+    const accountData = req.session.accountData
+    const vehicleHTML = utilities.buildVehicleDetailHTML(vehicleData, accountData)
     let nav = await utilities.getNav()
 
     res.render("inventory/vehicle-detail", {
       title: `${vehicleData.inv_make} ${vehicleData.inv_model}`,
       nav,
       vehicleHTML,
+      accountData,
+      loggedin: accountData !== undefined
     })
   } catch (error) {
     next(error) 
